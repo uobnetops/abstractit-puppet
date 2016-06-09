@@ -29,6 +29,10 @@ class puppet::config {
     default => present,
     undef   => absent,
   }
+  $splay_ensure = $splay ? {
+    default => present,
+    undef   => absent,
+  }
 
   ini_setting { 'puppet client server':
     ensure  => present,
@@ -87,7 +91,7 @@ class puppet::config {
   }
 
   ini_setting { 'puppet client splaylimit':
-    ensure  => present,
+    ensure  => $splay_ensure,
     path    => "${confdir}/puppet.conf",
     section => 'agent',
     setting => 'splaylimit',
