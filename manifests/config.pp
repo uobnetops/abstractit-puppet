@@ -29,7 +29,7 @@ class puppet::config {
     default => present,
     undef   => absent,
   }
-  $splay_ensure = $splay ? {
+  $splaylimit_ensure = $splaylimit ? {
     default => present,
     undef   => absent,
   }
@@ -91,7 +91,7 @@ class puppet::config {
   }
 
   ini_setting { 'puppet client splaylimit':
-    ensure  => $splay_ensure,
+    ensure  => $splaylimit_ensure,
     path    => "${confdir}/puppet.conf",
     section => 'agent',
     setting => 'splaylimit',
